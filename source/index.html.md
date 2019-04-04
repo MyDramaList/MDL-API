@@ -16,27 +16,31 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the MyDramaList API! You can use our API to access MyDramaList API endpoints, which can get information on titles, people and watchlist in our database.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+##Pagination
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Parameter | Type    | Default | Value
+--------- | ------- | ------- | -----
+page      | integer | 1       | Number of page of results to be returned.
+limit     | integer | 10      | A limit on the number of items to be returned, between 1 and 100.
+
+Header  | Value
+------- | ------
+X-Pagination-Count | Current count of items.
+X-Pagination-Limit | Items per page.
+X-Pagination-Page  | Current page.
+X-Pagination-Total | Total number of items.
+
+##Required Headers
+##Versioning
+
+Any future changes to the API will be versioned in order to maintain backwards compatibility with existing integrations.
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -44,26 +48,25 @@ curl "api_endpoint_here"
   -H "mdl-api-key: [client_id]"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+MyDramaList uses API keys to allow access to the API. You can register a new MyDramaList API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+MyDramaList expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `mdl-api-key: [client_id]`
+
 `Authorization: Bearer [access_token]`
+
+The bearer authorization header is scoped to an authorized platform user or application.
 
 <aside class="notice">
 You must replace <code>[client_id]</code> with your personal API key.
 </aside>
 
 # Titles
+
+## Title Object
 
 ## Get a title
 
@@ -143,6 +146,7 @@ ID | The identifier of the title to be retrieved.
 
 #People
 
+##Person Object
 ##Get a single person
 ##Get title credits
 
@@ -176,7 +180,7 @@ curl "https://api.mydramalist.com/sync/last_activities" \
 ##Get watchlist
 
 ```shell
-curl "https://api.mydramalist.com/sync/mylist/<LIST>" \
+curl "https://api.mydramalist.com/sync/mylist/[TYPE]" \
   -H "Content-Type: application/json" \
   -H "mdl-api-key: [client_id]"
 ```
@@ -217,14 +221,10 @@ curl "https://api.mydramalist.com/sync/mylist/<LIST>" \
 ]
 ```
 
-ID | VALUE         |  DESCRIPTION
--- | ------------- |  -----------------
-1  | watchlist     |  Current Watchlist
-2  | completed     |  Completed
-3  | plantowatch   |  Plan to Watch
-4  | dropped       |  Dropped
-5  | onhold        |  ON-Hold
-5  | notinterested |  Not Interested
+### Attributes
+Attribute |  Type   | Description
+--------- |  ------ | ------------
+type      |  string | The type of the watchlist. Currently, we support `watchlist`, `completed`,`plantowatch`,`dropped`,`onhold`,`notinterested`
 
 
 ##Add to watchlist
