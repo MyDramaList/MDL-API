@@ -84,7 +84,7 @@ curl "https://api.mydramalist.com/titles/24640" \
   "year": 2018,
   "rating": 0,
   "permalink": "https://mydramalist.com/24640-test-content",
-  "synopsis": "Aenean ligula eget dolor. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Sed cursus turpis vitae tortor. Praesent ac sem eget est egestas volutpat. Donec sodales sagittis magna.\n\nQuisque libero metus, condimentum nec, tempor a, commodox mollis, magna. Quisque ut nisi. Aliquam erat volutpat. Etiam feugiat lorem non metus. Etiam rhoncaus.\n\nDonec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc interdum lacus sit amet orci. Suspendisse potenti. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Cras dapibus. test24 test2",
+  "synopsis": "Aenean ligula eget dolor. Vestibulum turpis sem...",
   "type": "Movie",
   "language": "Japanese",
   "images": {
@@ -154,6 +154,78 @@ ID | The identifier of the title to be retrieved.
 
 #Sync
 ##Get last activities
+
+```shell
+curl "https://api.mydramalist.com/sync/last_activities" \
+  -H "Content-Type: application/json" \
+  -H "mdl-api-key: [client_id]"
+```
+
+```json
+{
+  "all": "2019-04-03T22:53:52Z",
+  "watching_at": "2019-04-03T22:53:52Z",
+  "completed_at": "2019-04-03T22:53:52Z",
+  "onhold_at": "0001-01-01T00:00:00Z",
+  "plan_to_watch_at": "0001-01-01T00:00:00Z",
+  "dropped_at": "0001-01-01T00:00:00Z",
+  "not_interested_at": "0001-01-01T00:00:00Z",
+  "rated_at": "2019-04-03T22:53:52Z"
+}
+```
 ##Get watchlist
+
+```shell
+curl "https://api.mydramalist.com/sync/mylist/<LIST>" \
+  -H "Content-Type: application/json" \
+  -H "mdl-api-key: [client_id]"
+```
+
+```json
+[
+  {
+    "list_id": 1,
+    "episode_seen": 3,
+    "rating": 0,
+    "priority": 0,
+    "times_rewatched": 0,
+    "rewatch_value": 0,
+    "date_start": "0000-00-00",
+    "date_finish": "0000-00-00",
+    "note": "testing2",
+    "tags": "",
+    "updated_at": "2019-04-04T06:29:03Z",
+    "title": {
+      "id": 25172,
+      "title": "My Mister",
+      "original_title": "나의 아저씨",
+      "year": 2018,
+      "episodes": 16,
+      "rating": 9.2,
+      "released": true,
+      "ended": true,
+      "type": "Drama",
+      "country": "South Korea",
+      "language": "Korean",
+      "images": {
+        "thumb": "https://i.mydramalist.com/X8rjwt.jpg",
+        "medium": "https://i.mydramalist.com/X8rjwm.jpg",
+        "poster": "https://i.mydramalist.com/X8rjwc.jpg"
+      }
+    }
+  }
+]
+```
+
+ID | VALUE         |  DESCRIPTION
+-- | ------------- |  -----------------
+1  | watchlist     |  Current Watchlist
+2  | completed     |  Completed
+3  | plantowatch   |  Plan to Watch
+4  | dropped       |  Dropped
+5  | onhold        |  ON-Hold
+5  | notinterested |  Not Interested
+
+
 ##Add to watchlist
 ##Remove from watchlist
