@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -44,7 +41,7 @@ api = kittn.authorize('meowmeowmeow')
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "mdl-api-key: [client_id]"
 ```
 
 ```javascript
@@ -59,181 +56,104 @@ Kittn uses API keys to allow access to the API. You can register a new Kittn API
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`mdl-api-key: [client_id]`
+`Authorization: Bearer [access_token]`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>[client_id]</code> with your personal API key.
 </aside>
 
-# Kittens
+# Titles
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get a title
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://api.mydramalist.com/titles/24640" \
+  -H "Content-Type: application/json" \
+  -H "mdl-api-key: [client_id]"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 24640,
+  "slug": "24640-test-content",
+  "title": "Test Content",
+  "original_title": "Test Content Native 2",
+  "year": 2018,
+  "rating": 0,
+  "permalink": "https://mydramalist.com/24640-test-content",
+  "synopsis": "Aenean ligula eget dolor. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Sed cursus turpis vitae tortor. Praesent ac sem eget est egestas volutpat. Donec sodales sagittis magna.\n\nQuisque libero metus, condimentum nec, tempor a, commodox mollis, magna. Quisque ut nisi. Aliquam erat volutpat. Etiam feugiat lorem non metus. Etiam rhoncaus.\n\nDonec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc interdum lacus sit amet orci. Suspendisse potenti. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Cras dapibus. test24 test2",
+  "type": "Movie",
+  "language": "Japanese",
+  "images": {
+    "thumb": "https://i.mydramalist.com/q2ERKt.jpg",
+    "medium": "https://i.mydramalist.com/q2ERKm.jpg",
+    "poster": "https://i.mydramalist.com/q2ERKc.jpg"
+  },
+  "alt_titles": [
+    "Test content"
+  ],
+  "country": "Japan",
+  "episodes": 1,
+  "watchers": 4,
+  "released": "2018-01-02",
+  "genres": [
+    "action",
+    "adventure",
+    "business"
+  ],
+  "tags": [
+    "Food",
+    "manga",
+    "time travel",
+    "Adapted From A Novel",
+    "instant attraction",
+    "anime",
+    "Mystery",
+    "Nice Male Lead"
+  ],
+  "trailer": 0,
+  "runtime": 30,
+  "certification": "Not Yet Rated",
+  "status": "",
+  "updated_at": 1501468950
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific title.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.mydramalist.com/titles/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The identifier of the title to be retrieved.
 
-## Delete a Specific Kitten
+## Get title ratings
+## Get all credits
+## Get all reviews
+## Get related titles
 
-```ruby
-require 'kittn'
+#People
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+##Get a single person
+##Get title credits
 
-```python
-import kittn
+#Reviews
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+##Create a review
+##Update a review
+##Delete a review
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+#Sync
+##Get last activities
+##Get watchlist
+##Add to watchlist
+##Remove from watchlist
