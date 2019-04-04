@@ -220,6 +220,17 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#required-headers" class="toc-h2 toc-link" data-title="Required Headers">Required Headers</a>
+                  </li>
+                  <li>
+                    <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -227,6 +238,9 @@
           <li>
             <a href="#titles" class="toc-h1 toc-link" data-title="Titles">Titles</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#title-object" class="toc-h2 toc-link" data-title="Title Object">Title Object</a>
+                  </li>
                   <li>
                     <a href="#get-a-title" class="toc-h2 toc-link" data-title="Get a title">Get a title</a>
                   </li>
@@ -247,6 +261,9 @@
           <li>
             <a href="#people" class="toc-h1 toc-link" data-title="People">People</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#person-object" class="toc-h2 toc-link" data-title="Person Object">Person Object</a>
+                  </li>
                   <li>
                     <a href="#get-a-single-person" class="toc-h2 toc-link" data-title="Get a single person">Get a single person</a>
                   </li>
@@ -299,43 +316,81 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the MyDramaList API! You can use our API to access MyDramaList API endpoints, which can get information on titles, people and watchlist in our database.</p>
+<h2 id='pagination'>Pagination</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>1</td>
+<td>Number of page of results to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>10</td>
+<td>A limit on the number of items to be returned, between 1 and 100.</td>
+</tr>
+</tbody></table>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Pagination-Count</td>
+<td>Current count of items.</td>
+</tr>
+<tr>
+<td>X-Pagination-Limit</td>
+<td>Items per page.</td>
+</tr>
+<tr>
+<td>X-Pagination-Page</td>
+<td>Current page.</td>
+</tr>
+<tr>
+<td>X-Pagination-Total</td>
+<td>Total number of items.</td>
+</tr>
+</tbody></table>
+<h2 id='required-headers'>Required Headers</h2><h2 id='versioning'>Versioning</h2>
+<p>Any future changes to the API will be versioned in order to maintain backwards compatibility with existing integrations.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>MyDramaList uses API keys to allow access to the API. You can register a new MyDramaList API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>MyDramaList expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>mdl-api-key: [client_id]</code>
-<code>Authorization: Bearer [access_token]</code></p>
+<p><code>mdl-api-key: [client_id]</code></p>
+
+<p><code>Authorization: Bearer [access_token]</code></p>
+
+<p>The bearer authorization header is scoped to an authorized platform user or application.</p>
 
 <aside class="notice">
 You must replace <code>[client_id]</code> with your personal API key.
 </aside>
-<h1 id='titles'>Titles</h1><h2 id='get-a-title'>Get a title</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/titles/24640"</span> <span class="se">\</span>
+<h1 id='titles'>Titles</h1><h2 id='title-object'>Title Object</h2><h2 id='get-a-title'>Get a title</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/titles/24640"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre>
@@ -404,7 +459,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 <td>The identifier of the title to be retrieved.</td>
 </tr>
 </tbody></table>
-<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
+<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='person-object'>Person Object</h2><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -417,7 +472,7 @@ You must replace <code>[client_id]</code> with your personal API key.
   </span><span class="s2">"not_interested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"rated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/&lt;LIST&gt;"</span> <span class="se">\</span>
+</span></code></pre><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
@@ -453,43 +508,18 @@ You must replace <code>[client_id]</code> with your personal API key.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre><h3 id='attributes'>Attributes</h3>
 <table><thead>
 <tr>
-<th>ID</th>
-<th>VALUE</th>
-<th>DESCRIPTION</th>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>1</td>
-<td>watchlist</td>
-<td>Current Watchlist</td>
-</tr>
-<tr>
-<td>2</td>
-<td>completed</td>
-<td>Completed</td>
-</tr>
-<tr>
-<td>3</td>
-<td>plantowatch</td>
-<td>Plan to Watch</td>
-</tr>
-<tr>
-<td>4</td>
-<td>dropped</td>
-<td>Dropped</td>
-</tr>
-<tr>
-<td>5</td>
-<td>onhold</td>
-<td>ON-Hold</td>
-</tr>
-<tr>
-<td>5</td>
-<td>notinterested</td>
-<td>Not Interested</td>
+<td>type</td>
+<td>string</td>
+<td>The type of the watchlist. Currently, we support <code>watchlist</code>, <code>completed</code>,<code>plantowatch</code>,<code>dropped</code>,<code>onhold</code>,<code>notinterested</code></td>
 </tr>
 </tbody></table>
 <h2 id='add-to-watchlist'>Add to watchlist</h2><h2 id='remove-from-watchlist'>Remove from watchlist</h2><h1 id='errors'>Errors</h1>
