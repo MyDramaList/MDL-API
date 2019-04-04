@@ -404,7 +404,95 @@ You must replace <code>[client_id]</code> with your personal API key.
 <td>The identifier of the title to be retrieved.</td>
 </tr>
 </tbody></table>
-<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-last-activities'>Get last activities</h2><h2 id='get-watchlist'>Get watchlist</h2><h2 id='add-to-watchlist'>Add to watchlist</h2><h2 id='remove-from-watchlist'>Remove from watchlist</h2><h1 id='errors'>Errors</h1>
+<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"mdl-api-key: [client_id]"</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"watching_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"onhold_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_to_watch_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dropped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"not_interested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/&lt;LIST&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"mdl-api-key: [client_id]"</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"list_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"episode_seen"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"times_rewatched"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rewatch_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date_finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-04T06:29:03Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25172</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Mister"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"original_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"나의 아저씨"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"released"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ended"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drama"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Korea"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Korean"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwt.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwm.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwc.jpg"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>ID</th>
+<th>VALUE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>watchlist</td>
+<td>Current Watchlist</td>
+</tr>
+<tr>
+<td>2</td>
+<td>completed</td>
+<td>Completed</td>
+</tr>
+<tr>
+<td>3</td>
+<td>plantowatch</td>
+<td>Plan to Watch</td>
+</tr>
+<tr>
+<td>4</td>
+<td>dropped</td>
+<td>Dropped</td>
+</tr>
+<tr>
+<td>5</td>
+<td>onhold</td>
+<td>ON-Hold</td>
+</tr>
+<tr>
+<td>5</td>
+<td>notinterested</td>
+<td>Not Interested</td>
+</tr>
+</tbody></table>
+<h2 id='add-to-watchlist'>Add to watchlist</h2><h2 id='remove-from-watchlist'>Remove from watchlist</h2><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
