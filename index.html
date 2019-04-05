@@ -239,9 +239,6 @@
             <a href="#titles" class="toc-h1 toc-link" data-title="Titles">Titles</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#title-object" class="toc-h2 toc-link" data-title="Title Object">Title Object</a>
-                  </li>
-                  <li>
                     <a href="#get-a-title" class="toc-h2 toc-link" data-title="Get a title">Get a title</a>
                   </li>
                   <li>
@@ -261,9 +258,6 @@
           <li>
             <a href="#people" class="toc-h1 toc-link" data-title="People">People</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#person-object" class="toc-h2 toc-link" data-title="Person Object">Person Object</a>
-                  </li>
                   <li>
                     <a href="#get-a-single-person" class="toc-h2 toc-link" data-title="Get a single person">Get a single person</a>
                   </li>
@@ -290,9 +284,6 @@
             <a href="#sync" class="toc-h1 toc-link" data-title="Sync">Sync</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-last-activities" class="toc-h2 toc-link" data-title="Get last activities">Get last activities</a>
-                  </li>
-                  <li>
                     <a href="#get-watchlist" class="toc-h2 toc-link" data-title="Get watchlist">Get watchlist</a>
                   </li>
                   <li>
@@ -300,6 +291,9 @@
                   </li>
                   <li>
                     <a href="#remove-from-watchlist" class="toc-h2 toc-link" data-title="Remove from watchlist">Remove from watchlist</a>
+                  </li>
+                  <li>
+                    <a href="#get-last-activities" class="toc-h2 toc-link" data-title="Get last activities">Get last activities</a>
                   </li>
               </ul>
           </li>
@@ -364,7 +358,7 @@
 </tr>
 </tbody></table>
 <h2 id='required-headers'>Required Headers</h2><h2 id='versioning'>Versioning</h2>
-<p>Any future changes to the API will be versioned in order to maintain backwards compatibility with existing integrations.</p>
+<p>The API version is included in the base URL of the request. The current version is <code>v1</code>.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -390,12 +384,13 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>[client_id]</code> with your personal API key.
 </aside>
-<h1 id='titles'>Titles</h1><h2 id='title-object'>Title Object</h2><h2 id='get-a-title'>Get a title</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/titles/24640"</span> <span class="se">\</span>
+<h1 id='titles'>Titles</h1><h2 id='get-a-title'>Get a title</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/titles/[id] <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"mdl-api-key: [client_id]"</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>JSON response example:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24640</span><span class="p">,</span><span class="w">
@@ -459,23 +454,14 @@ You must replace <code>[client_id]</code> with your personal API key.
 <td>The identifier of the title to be retrieved.</td>
 </tr>
 </tbody></table>
-<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='person-object'>Person Object</h2><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
+<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"watching_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"onhold_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"plan_to_watch_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dropped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"not_interested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"mdl-api-key: [client_id]"</span>
-</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"list_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"episode_seen"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -519,10 +505,192 @@ You must replace <code>[client_id]</code> with your personal API key.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The type of the watchlist. Currently, we support <code>watchlist</code>, <code>completed</code>,<code>plantowatch</code>,<code>dropped</code>,<code>onhold</code>,<code>notinterested</code></td>
+<td>The type of the watchlist. Currently, we support <code>watchlist</code>, <code>completed</code>, <code>plantowatch</code>, <code>dropped</code>, <code>onhold</code>, <code>notinterested</code></td>
 </tr>
 </tbody></table>
-<h2 id='add-to-watchlist'>Add to watchlist</h2><h2 id='remove-from-watchlist'>Remove from watchlist</h2><h1 id='errors'>Errors</h1>
+<h2 id='add-to-watchlist'>Add to watchlist</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://api.mydramalist.com/sync/mylist'</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
+  --data <span class="s1">'[
+  {
+    "list_id": 1,
+    "episode_seen": 4,
+    "rating": 0,
+    "priority": 0,
+    "times_rewatched": 0,
+    "rewatch_value": 0,
+    "date_start": "0000-00-00",
+    "date_finish": "0000-00-00",
+    "note": "testing2",
+    "title": {
+      "id": 25172,
+      "title": "My Mister",
+      "year": 2018,
+      "type": "Drama",
+      "country": "South Korea"
+    }
+  },
+  {...}
+]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"titles"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"not_found"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"titles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">191641111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tokyo Ghoul"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='watchlist-object'>Watchlist object</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>list_id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>episode_seen</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>rating</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>priority</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>times_rewatched</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>rewatch_value</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>date_start</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>date_finish</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>object</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='title-object'>Title object</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='remove-from-watchlist'>Remove from watchlist</h2><pre class="highlight shell tab-shell"><code>curl X DELETE <span class="se">\</span>
+  <span class="s1">'http://dev-api.mydramalist.com/sync/mylist'</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
+  --data <span class="s1">'[
+      {
+          "id": 12345
+      },
+      {
+          "id": 25172
+      }
+    ]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"titles"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"not_found"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"titles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"mdl-api-key: [client_id]"</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"watching_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"onhold_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_to_watch_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dropped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"not_interested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
