@@ -35,7 +35,7 @@ X-Pagination-Total | Total number of items.
 ##Required Headers
 ##Versioning
 
-Any future changes to the API will be versioned in order to maintain backwards compatibility with existing integrations.
+The API version is included in the base URL of the request. The current version is `v1`.
 
 # Authentication
 
@@ -66,17 +66,17 @@ You must replace <code>[client_id]</code> with your personal API key.
 
 # Titles
 
-## Title Object
 
 ## Get a title
 
 ```shell
-curl "https://api.mydramalist.com/titles/24640" \
+curl -X GET \
+  https://api.mydramalist.com/titles/[id] \
   -H "Content-Type: application/json" \
-  -H "mdl-api-key: [client_id]"
+  -H 'mdl-api-key: [client_id]'
 ```
 
-> The above command returns JSON structured like this:
+> JSON response example:
 
 ```json
 {
@@ -146,7 +146,6 @@ ID | The identifier of the title to be retrieved.
 
 #People
 
-##Person Object
 ##Get a single person
 ##Get title credits
 
@@ -157,26 +156,7 @@ ID | The identifier of the title to be retrieved.
 ##Delete a review
 
 #Sync
-##Get last activities
 
-```shell
-curl "https://api.mydramalist.com/sync/last_activities" \
-  -H "Content-Type: application/json" \
-  -H "mdl-api-key: [client_id]"
-```
-
-```json
-{
-  "all": "2019-04-03T22:53:52Z",
-  "watching_at": "2019-04-03T22:53:52Z",
-  "completed_at": "2019-04-03T22:53:52Z",
-  "onhold_at": "0001-01-01T00:00:00Z",
-  "plan_to_watch_at": "0001-01-01T00:00:00Z",
-  "dropped_at": "0001-01-01T00:00:00Z",
-  "not_interested_at": "0001-01-01T00:00:00Z",
-  "rated_at": "2019-04-03T22:53:52Z"
-}
-```
 ##Get watchlist
 
 ```shell
@@ -184,6 +164,8 @@ curl "https://api.mydramalist.com/sync/mylist/[TYPE]" \
   -H "Content-Type: application/json" \
   -H "mdl-api-key: [client_id]"
 ```
+
+> JSON response example:
 
 ```json
 [
@@ -224,8 +206,133 @@ curl "https://api.mydramalist.com/sync/mylist/[TYPE]" \
 ### Attributes
 Attribute |  Type   | Description
 --------- |  ------ | ------------
-type      |  string | The type of the watchlist. Currently, we support `watchlist`, `completed`,`plantowatch`,`dropped`,`onhold`,`notinterested`
+type |  string | The type of the watchlist. Currently, we support `watchlist`, `completed`, `plantowatch`, `dropped`, `onhold`, `notinterested`
 
 
 ##Add to watchlist
+
+```shell
+curl -X POST \
+  'https://api.mydramalist.com/sync/mylist' \
+  -H "Content-Type: application/json" \
+  -H 'authorization: Bearer [access_token]' \
+  -H 'mdl-api-key: [client_id]' \
+  --data '[
+  {
+    "list_id": 1,
+    "episode_seen": 4,
+    "rating": 0,
+    "priority": 0,
+    "times_rewatched": 0,
+    "rewatch_value": 0,
+    "date_start": "0000-00-00",
+    "date_finish": "0000-00-00",
+    "note": "testing2",
+    "title": {
+      "id": 25172,
+      "title": "My Mister",
+      "year": 2018,
+      "type": "Drama",
+      "country": "South Korea"
+    }
+  },
+  {...}
+]'
+```
+> JSON response example:
+
+```json
+{
+  "success": {
+    "titles": 1
+  },
+  "not_found": {
+    "titles": [
+      {
+        "id": 191641111,
+        "title": "Tokyo Ghoul"
+      }
+    ]
+  }
+}
+```
+
+###Watchlist object
+Attribute | Type | Description
+-------- | --------- | -------
+list_id | integer |
+episode_seen | integer |
+rating | float |
+priority | integer |
+times_rewatched | integer |
+rewatch_value | integer |
+date_start | date |
+date_finish | date |
+note | string |
+title | object |
+
+###Title object
+Attribute | Type | Description
+-------- | --------- | -------
+id  | integer |
+title | string |
+year  | integer |
+type  | string |
+country | string |
+
+
 ##Remove from watchlist
+
+```shell
+curl X DELETE \
+  'http://dev-api.mydramalist.com/sync/mylist' \
+  -H 'authorization: Bearer [access_token]' \
+  -H 'content-type: application/json' \
+  -H 'mdl-api-key: [client_id]' \
+  --data '[
+      {
+          "id": 12345
+      },
+      {
+          "id": 25172
+      }
+    ]'
+```
+> JSON response example:
+
+```json
+{
+  "deleted": {
+    "titles": 1
+  },
+  "not_found": {
+    "titles": [
+      {
+        "id": 12345
+      }
+    ]
+  }
+}
+```
+
+##Get last activities
+
+```shell
+curl "https://api.mydramalist.com/sync/last_activities" \
+  -H "Content-Type: application/json" \
+  -H "mdl-api-key: [client_id]"
+```
+> JSON response example:
+
+```json
+{
+  "all": "2019-04-03T22:53:52Z",
+  "watching_at": "2019-04-03T22:53:52Z",
+  "completed_at": "2019-04-03T22:53:52Z",
+  "onhold_at": "0001-01-01T00:00:00Z",
+  "plan_to_watch_at": "0001-01-01T00:00:00Z",
+  "dropped_at": "0001-01-01T00:00:00Z",
+  "not_interested_at": "0001-01-01T00:00:00Z",
+  "rated_at": "2019-04-03T22:53:52Z"
+}
+```
