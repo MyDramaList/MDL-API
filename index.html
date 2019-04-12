@@ -253,6 +253,9 @@
                   <li>
                     <a href="#get-related-titles" class="toc-h2 toc-link" data-title="Get related titles">Get related titles</a>
                   </li>
+                  <li>
+                    <a href="#get-recently-updates" class="toc-h2 toc-link" data-title="Get recently updates">Get recently updates</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -357,9 +360,14 @@
 <td>Total number of items.</td>
 </tr>
 </tbody></table>
-<h2 id='required-headers'>Required Headers</h2><h2 id='versioning'>Versioning</h2>
+<h2 id='required-headers'>Required Headers</h2>
+<p><code>Content-Type: application/json</code></p>
+<h2 id='versioning'>Versioning</h2>
 <p>The API version is included in the base URL of the request. The current version is <code>v1</code>.</p>
 <h1 id='authentication'>Authentication</h1>
+<p><code>GET https://api.mydramalist.com/oauth/authorize?response_type=code&amp;client_id=[CLIENT_ID]&amp;redirect_uri=[REDIRECT_URI]</code> 
+<code>POST https://api.mydramalist.com/oauth/token?response_type=authorization_code&amp;client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;redirect_uri=[REDIRECT_URI]&amp;code=[AUTHORIZE_CODE]</code> </p>
+
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -368,7 +376,7 @@ curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>[client_id]</code> with your API key.</p>
 </blockquote>
 
 <p>MyDramaList uses API keys to allow access to the API. You can register a new MyDramaList API key at our <a href="http://example.com/developers">developer portal</a>.</p>
@@ -441,7 +449,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.mydramalist.com/titles/&lt;ID&gt;</code></p>
+<p><code>GET https://api.mydramalist.com/titles/[ID]</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -454,7 +462,22 @@ You must replace <code>[client_id]</code> with your personal API key.
 <td>The identifier of the title to be retrieved.</td>
 </tr>
 </tbody></table>
-<h2 id='get-title-ratings'>Get title ratings</h2><h2 id='get-all-credits'>Get all credits</h2><h2 id='get-all-reviews'>Get all reviews</h2><h2 id='get-related-titles'>Get related titles</h2><h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2><h2 id='get-title-credits'>Get title credits</h2><h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
+<h2 id='get-title-ratings'>Get title ratings</h2>
+<p><code>GET https://api.mydramalist.com/titles/[ID]/ratings</code></p>
+<h2 id='get-all-credits'>Get all credits</h2>
+<p><code>GET https://api.mydramalist.com/titles/[ID]/credits</code></p>
+<h2 id='get-all-reviews'>Get all reviews</h2>
+<p><code>GET https://api.mydramalist.com/titles/[ID]/reviews</code></p>
+<h2 id='get-related-titles'>Get related titles</h2>
+<p><code>GET https://api.mydramalist.com/titles/[ID]/related</code></p>
+<h2 id='get-recently-updates'>Get recently updates</h2>
+<p><code>GET https://api.mydramalist.com/titles/updates/[START_DATE]</code> 
+<code>e.g 2019-04-02</code></p>
+<h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2>
+<p><code>GET https://api.mydramalist.com/people/[ID]</code></p>
+<h2 id='get-title-credits'>Get title credits</h2>
+<p><code>GET https://api.mydramalist.com/people/[ID]/credits</code></p>
+<h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre>
@@ -645,7 +668,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='remove-from-watchlist'>Remove from watchlist</h2><pre class="highlight shell tab-shell"><code>curl X DELETE <span class="se">\</span>
-  <span class="s1">'http://dev-api.mydramalist.com/sync/mylist'</span> <span class="se">\</span>
+  <span class="s1">'http://api.mydramalist.com/sync/mylist'</span> <span class="se">\</span>
   -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
