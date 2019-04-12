@@ -33,14 +33,17 @@ X-Pagination-Page  | Current page.
 X-Pagination-Total | Total number of items.
 
 ##Required Headers
+`Content-Type: application/json`
+
 ##Versioning
 
 The API version is included in the base URL of the request. The current version is `v1`.
 
 # Authentication
+`GET https://api.mydramalist.com/oauth/authorize?response_type=code&client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URI]` 
+`POST https://api.mydramalist.com/oauth/token?response_type=authorization_code&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&redirect_uri=[REDIRECT_URI]&code=[AUTHORIZE_CODE]` 
 
 > To authorize, use this code:
-
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -48,7 +51,7 @@ curl "api_endpoint_here"
   -H "mdl-api-key: [client_id]"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `[client_id]` with your API key.
 
 MyDramaList uses API keys to allow access to the API. You can register a new MyDramaList API key at our [developer portal](http://example.com/developers).
 
@@ -131,7 +134,7 @@ This endpoint retrieves a specific title.
 
 ### HTTP Request
 
-`GET https://api.mydramalist.com/titles/<ID>`
+`GET https://api.mydramalist.com/titles/[ID]`
 
 ### URL Parameters
 
@@ -139,15 +142,24 @@ Parameter | Description
 --------- | -----------
 ID | The identifier of the title to be retrieved.
 
-## Get title ratings
-## Get all credits
-## Get all reviews
-## Get related titles
+##Get title ratings
+`GET https://api.mydramalist.com/titles/[ID]/ratings`
+##Get all credits
+`GET https://api.mydramalist.com/titles/[ID]/credits`
+##Get all reviews
+`GET https://api.mydramalist.com/titles/[ID]/reviews`
+##Get related titles
+`GET https://api.mydramalist.com/titles/[ID]/related`
+##Get recently updates
+`GET https://api.mydramalist.com/titles/updates/[START_DATE]` 
+`e.g 2019-04-02`
 
 #People
 
 ##Get a single person
+`GET https://api.mydramalist.com/people/[ID]`
 ##Get title credits
+`GET https://api.mydramalist.com/people/[ID]/credits`
 
 #Reviews
 
@@ -285,7 +297,7 @@ country | string |
 
 ```shell
 curl X DELETE \
-  'http://dev-api.mydramalist.com/sync/mylist' \
+  'http://api.mydramalist.com/sync/mylist' \
   -H 'authorization: Bearer [access_token]' \
   -H 'content-type: application/json' \
   -H 'mdl-api-key: [client_id]' \
