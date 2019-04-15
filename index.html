@@ -236,6 +236,14 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#search" class="toc-h1 toc-link" data-title="Search">Search</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#search-titles" class="toc-h2 toc-link" data-title="Search Titles">Search Titles</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#titles" class="toc-h1 toc-link" data-title="Titles">Titles</a>
               <ul class="toc-list-h2">
                   <li>
@@ -273,6 +281,9 @@
             <a href="#reviews" class="toc-h1 toc-link" data-title="Reviews">Reviews</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#get-a-review" class="toc-h2 toc-link" data-title="Get a review">Get a review</a>
+                  </li>
+                  <li>
                     <a href="#create-a-review" class="toc-h2 toc-link" data-title="Create a review">Create a review</a>
                   </li>
                   <li>
@@ -280,6 +291,14 @@
                   </li>
                   <li>
                     <a href="#delete-a-review" class="toc-h2 toc-link" data-title="Delete a review">Delete a review</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#genres" class="toc-h1 toc-link" data-title="Genres">Genres</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-genres" class="toc-h2 toc-link" data-title="Get genres">Get genres</a>
                   </li>
               </ul>
           </li>
@@ -297,6 +316,14 @@
                   </li>
                   <li>
                     <a href="#get-last-activities" class="toc-h2 toc-link" data-title="Get last activities">Get last activities</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-user-settings" class="toc-h2 toc-link" data-title="Get user settings">Get user settings</a>
                   </li>
               </ul>
           </li>
@@ -365,8 +392,8 @@
 <h2 id='versioning'>Versioning</h2>
 <p>The API version is included in the base URL of the request. The current version is <code>v1</code>.</p>
 <h1 id='authentication'>Authentication</h1>
-<p><code>GET https://api.mydramalist.com/oauth/authorize?response_type=code&amp;client_id=[CLIENT_ID]&amp;redirect_uri=[REDIRECT_URI]</code> 
-<code>POST https://api.mydramalist.com/oauth/token?response_type=authorization_code&amp;client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;redirect_uri=[REDIRECT_URI]&amp;code=[AUTHORIZE_CODE]</code> </p>
+<p><code>GET https://api.mydramalist.com/v1/oauth/authorize?response_type=code&amp;client_id=[CLIENT_ID]&amp;redirect_uri=[REDIRECT_URI]</code> 
+<code>POST https://api.mydramalist.com/v1/oauth/token?response_type=authorization_code&amp;client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;redirect_uri=[REDIRECT_URI]&amp;code=[AUTHORIZE_CODE]</code> </p>
 
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -392,8 +419,22 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>[client_id]</code> with your personal API key.
 </aside>
+<h1 id='search'>Search</h1>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>Query</td>
+</tr>
+</tbody></table>
+<h2 id='search-titles'>Search Titles</h2>
+<p><code>POST https://api.mydramalist.com/v1/search/titles</code></p>
 <h1 id='titles'>Titles</h1><h2 id='get-a-title'>Get a title</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  https://api.mydramalist.com/titles/[id] <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/[id] <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s1">'mdl-api-key: [client_id]'</span>
 </code></pre>
@@ -449,7 +490,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.mydramalist.com/titles/[ID]</code></p>
+<p><code>GET https://api.mydramalist.com/v1/titles/[ID]</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -463,21 +504,31 @@ You must replace <code>[client_id]</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-title-ratings'>Get title ratings</h2>
-<p><code>GET https://api.mydramalist.com/titles/[ID]/ratings</code></p>
+<p><code>GET https://api.mydramalist.com/v1/titles/[ID]/ratings</code></p>
 <h2 id='get-all-credits'>Get all credits</h2>
-<p><code>GET https://api.mydramalist.com/titles/[ID]/credits</code></p>
+<p><code>GET https://api.mydramalist.com/v1/titles/[ID]/credits</code></p>
 <h2 id='get-all-reviews'>Get all reviews</h2>
-<p><code>GET https://api.mydramalist.com/titles/[ID]/reviews</code></p>
+<p><code>GET https://api.mydramalist.com/v1/titles/[ID]/reviews</code></p>
 <h2 id='get-related-titles'>Get related titles</h2>
-<p><code>GET https://api.mydramalist.com/titles/[ID]/related</code></p>
+<p><code>GET https://api.mydramalist.com/v1/titles/[ID]/related</code></p>
 <h2 id='get-recently-updates'>Get recently updates</h2>
-<p><code>GET https://api.mydramalist.com/titles/updates/[START_DATE]</code> 
+<p><code>GET https://api.mydramalist.com/v1/titles/updates/[START_DATE]</code> 
 <code>e.g 2019-04-02</code></p>
 <h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2>
-<p><code>GET https://api.mydramalist.com/people/[ID]</code></p>
+<p><code>GET https://api.mydramalist.com/v1/people/[ID]</code></p>
 <h2 id='get-title-credits'>Get title credits</h2>
-<p><code>GET https://api.mydramalist.com/people/[ID]/credits</code></p>
-<h1 id='reviews'>Reviews</h1><h2 id='create-a-review'>Create a review</h2><h2 id='update-a-review'>Update a review</h2><h2 id='delete-a-review'>Delete a review</h2><h1 id='sync'>Sync</h1><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/mylist/[TYPE]"</span> <span class="se">\</span>
+<p><code>GET https://api.mydramalist.com/v1/people/[ID]/credits</code></p>
+<h1 id='reviews'>Reviews</h1><h2 id='get-a-review'>Get a review</h2>
+<p><code>GET https://api.mydramalist.com/v1/reviews/[ID]</code></p>
+<h2 id='create-a-review'>Create a review</h2>
+<p><code>POST https://api.mydramalist.com/v1/reviews</code></p>
+<h2 id='update-a-review'>Update a review</h2>
+<p><code>PATCH https://api.mydramalist.com/v1/reviews/[ID]</code></p>
+<h2 id='delete-a-review'>Delete a review</h2>
+<p><code>DELETE https://api.mydramalist.com/v1/reviews/[ID]</code></p>
+<h1 id='genres'>Genres</h1><h2 id='get-genres'>Get genres</h2>
+<p><code>GET https://api.mydramalist.com/v1/genres</code></p>
+<h1 id='sync'>Sync</h1><h2 id='get-watchlist'>Get watchlist</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/v1/sync/mylist/[TYPE]"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre>
@@ -532,7 +583,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='add-to-watchlist'>Add to watchlist</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
-  <span class="s1">'https://api.mydramalist.com/sync/mylist'</span> <span class="se">\</span>
+  <span class="s1">'https://api.mydramalist.com/v1/sync/mylist'</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
   -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
@@ -696,7 +747,7 @@ You must replace <code>[client_id]</code> with your personal API key.
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/sync/last_activities"</span> <span class="se">\</span>
+</span></code></pre><h2 id='get-last-activities'>Get last activities</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.mydramalist.com/v1/sync/last_activities"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"mdl-api-key: [client_id]"</span>
 </code></pre>
@@ -713,7 +764,9 @@ You must replace <code>[client_id]</code> with your personal API key.
   </span><span class="s2">"not_interested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"rated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-03T22:53:52Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='errors'>Errors</h1>
+</span></code></pre><h1 id='users'>Users</h1><h2 id='get-user-settings'>Get user settings</h2>
+<p><code>GET https://api.mydramalist.com/v1/users/settings</code></p>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
