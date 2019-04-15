@@ -40,8 +40,8 @@ X-Pagination-Total | Total number of items.
 The API version is included in the base URL of the request. The current version is `v1`.
 
 # Authentication
-`GET https://api.mydramalist.com/oauth/authorize?response_type=code&client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URI]` 
-`POST https://api.mydramalist.com/oauth/token?response_type=authorization_code&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&redirect_uri=[REDIRECT_URI]&code=[AUTHORIZE_CODE]` 
+`GET https://api.mydramalist.com/v1/oauth/authorize?response_type=code&client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URI]` 
+`POST https://api.mydramalist.com/v1/oauth/token?response_type=authorization_code&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&redirect_uri=[REDIRECT_URI]&code=[AUTHORIZE_CODE]` 
 
 > To authorize, use this code:
 
@@ -67,6 +67,14 @@ The bearer authorization header is scoped to an authorized platform user or appl
 You must replace <code>[client_id]</code> with your personal API key.
 </aside>
 
+# Search
+Parameter | Description
+--------- | -----------
+q | Query
+
+## Search Titles
+`POST https://api.mydramalist.com/v1/search/titles`
+
 # Titles
 
 
@@ -74,7 +82,7 @@ You must replace <code>[client_id]</code> with your personal API key.
 
 ```shell
 curl -X GET \
-  https://api.mydramalist.com/titles/[id] \
+  https://api.mydramalist.com/v1/titles/[id] \
   -H "Content-Type: application/json" \
   -H 'mdl-api-key: [client_id]'
 ```
@@ -134,7 +142,7 @@ This endpoint retrieves a specific title.
 
 ### HTTP Request
 
-`GET https://api.mydramalist.com/titles/[ID]`
+`GET https://api.mydramalist.com/v1/titles/[ID]`
 
 ### URL Parameters
 
@@ -143,36 +151,49 @@ Parameter | Description
 ID | The identifier of the title to be retrieved.
 
 ##Get title ratings
-`GET https://api.mydramalist.com/titles/[ID]/ratings`
+`GET https://api.mydramalist.com/v1/titles/[ID]/ratings`
 ##Get all credits
-`GET https://api.mydramalist.com/titles/[ID]/credits`
+`GET https://api.mydramalist.com/v1/titles/[ID]/credits`
 ##Get all reviews
-`GET https://api.mydramalist.com/titles/[ID]/reviews`
+`GET https://api.mydramalist.com/v1/titles/[ID]/reviews`
 ##Get related titles
-`GET https://api.mydramalist.com/titles/[ID]/related`
+`GET https://api.mydramalist.com/v1/titles/[ID]/related`
 ##Get recently updates
-`GET https://api.mydramalist.com/titles/updates/[START_DATE]` 
+`GET https://api.mydramalist.com/v1/titles/updates/[START_DATE]` 
 `e.g 2019-04-02`
 
 #People
 
 ##Get a single person
-`GET https://api.mydramalist.com/people/[ID]`
+`GET https://api.mydramalist.com/v1/people/[ID]`
 ##Get title credits
-`GET https://api.mydramalist.com/people/[ID]/credits`
+`GET https://api.mydramalist.com/v1/people/[ID]/credits`
 
 #Reviews
 
+##Get a review
+`GET https://api.mydramalist.com/v1/reviews/[ID]`
+
 ##Create a review
+`POST https://api.mydramalist.com/v1/reviews`
+
 ##Update a review
+`PATCH https://api.mydramalist.com/v1/reviews/[ID]`
+
 ##Delete a review
+`DELETE https://api.mydramalist.com/v1/reviews/[ID]`
+
+#Genres
+
+##Get genres
+`GET https://api.mydramalist.com/v1/genres`
 
 #Sync
 
 ##Get watchlist
 
 ```shell
-curl "https://api.mydramalist.com/sync/mylist/[TYPE]" \
+curl "https://api.mydramalist.com/v1/sync/mylist/[TYPE]" \
   -H "Content-Type: application/json" \
   -H "mdl-api-key: [client_id]"
 ```
@@ -225,7 +246,7 @@ type |  string | The type of the watchlist. Currently, we support `watchlist`, `
 
 ```shell
 curl -X POST \
-  'https://api.mydramalist.com/sync/mylist' \
+  'https://api.mydramalist.com/v1/sync/mylist' \
   -H "Content-Type: application/json" \
   -H 'authorization: Bearer [access_token]' \
   -H 'mdl-api-key: [client_id]' \
@@ -330,7 +351,7 @@ curl X DELETE \
 ##Get last activities
 
 ```shell
-curl "https://api.mydramalist.com/sync/last_activities" \
+curl "https://api.mydramalist.com/v1/sync/last_activities" \
   -H "Content-Type: application/json" \
   -H "mdl-api-key: [client_id]"
 ```
@@ -348,3 +369,7 @@ curl "https://api.mydramalist.com/sync/last_activities" \
   "rated_at": "2019-04-03T22:53:52Z"
 }
 ```
+
+#Users
+##Get user settings
+`GET https://api.mydramalist.com/v1/users/settings`
