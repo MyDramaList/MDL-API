@@ -270,7 +270,7 @@
             <a href="#people" class="toc-h1 toc-link" data-title="People">People</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-a-single-person" class="toc-h2 toc-link" data-title="Get a single person">Get a single person</a>
+                    <a href="#get-a-person-details" class="toc-h2 toc-link" data-title="Get a person details">Get a person details</a>
                   </li>
                   <li>
                     <a href="#get-title-credits" class="toc-h2 toc-link" data-title="Get title credits">Get title credits</a>
@@ -453,9 +453,9 @@ You must replace <code>[client_id]</code> with your personal API key.
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Movie"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japanese"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/q2ERKt.jpg"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/q2ERKm.jpg"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/q2ERKc.jpg"</span><span class="w">
+    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"alt_titles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"Test content"</span><span class="w">
@@ -486,7 +486,7 @@ You must replace <code>[client_id]</code> with your personal API key.
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1501468950</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific title.</p>
+<p>This endpoint retrieves a specific TV show or movie.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 <h3 id='http-request'>HTTP Request</h3>
@@ -503,28 +503,484 @@ You must replace <code>[client_id]</code> with your personal API key.
 <td>The identifier of the title to be retrieved.</td>
 </tr>
 </tbody></table>
-<h2 id='get-title-ratings'>Get title ratings</h2>
+<h2 id='get-title-ratings'>Get title ratings</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/[id]/ratings <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">4207</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"distribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"9.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"4.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"6.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">166</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">431</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">455</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"4.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"10.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">491</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"1.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"8.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">765</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"8.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">641</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"9.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">620</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5.5"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"6.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"1.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get the ratings distrubtion for a TV show or movie.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/titles/[ID]/ratings</code></p>
-<h2 id='get-all-credits'>Get all credits</h2>
+<h2 id='get-all-credits'>Get all credits</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/[id]/credits <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cast"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5043</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lee Jun Ho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5043-lee-jun-ho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"character_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seo Poong"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Role"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jang Hyuk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"181-jang-hyuk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"character_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doo Chil Seong"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Role"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get the credits for a TV show or movie.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/titles/[ID]/credits</code></p>
-<h2 id='get-all-reviews'>Get all reviews</h2>
+<h2 id='get-all-reviews'>Get all reviews</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/[id]/reviews <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">47125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ratings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"acting"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"music"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rewatch"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"review"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pellentesque dapibus hendrerit tortor. Maecenas ullamcorper..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dropped"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"spoiler"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lang_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"voted"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"episodes_seen"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dummy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dummy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24640</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/24640-test-content"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Content"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Movie"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-13T08:09:55Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get the reviews for a TV show or movie.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/titles/[ID]/reviews</code></p>
-<h2 id='get-related-titles'>Get related titles</h2>
+<h2 id='get-related-titles'>Get related titles</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/[id]/related <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50319</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown Number"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"original_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"时空来电"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/50319-unknown-number"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drama"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chinese"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"related_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Remake"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get a list of related titles for a TV show or movie.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/titles/[ID]/related</code></p>
-<h2 id='get-recently-updates'>Get recently updates</h2>
+<h2 id='get-recently-updates'>Get recently updates</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/titles/updates/[START_DATE] <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1988</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tenkosei: Sayonara Anata"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T09:50:10Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7703</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Houkago"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T09:50:14Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16169</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morrasoom Sawat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T09:50:27Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get a list of recently updates TV shows or movies. </p>
+
 <p><code>GET https://api.mydramalist.com/v1/titles/updates/[START_DATE]</code> 
 <code>e.g 2019-04-02</code></p>
-<h1 id='people'>People</h1><h2 id='get-a-single-person'>Get a single person</h2>
+<h1 id='people'>People</h1><h2 id='get-a-person-details'>Get a person details</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/people/[ID] <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">972</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Im Yoon Ah"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yoon Ah"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"family_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Im"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"original_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"임윤아"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"biography"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Im Yoon Ah, commonly stylized as Yoona, is a popular South Korean pop singer, dancer, actress, model and spokesmodel. She is a member of the Korean girl group Girls' Generation and is known as the center-girl, lead dancer and sub-vocalist of the group. Yoona made her debut as a singer along with Girls' Generation on August 5, 2007. She made her debut as an actress in the 2007 Korean drama, 9 Ends, 2 Outs. </span><span class="se">\n</span><span class="s2">In January 2014, Yoona and actor Lee Seung Gi were confirmed to be in a relationship since September 2013. On the 13 of August 2015, both stars confirmed they broke up after dating for a year and nine months due to busy schedules."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mydramalistcom/people/972-im-yoon-ah"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"people/972-im-yoon-ah"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-05-30"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Korean"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get the primary person details by id.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/people/[ID]</code></p>
-<h2 id='get-title-credits'>Get title credits</h2>
+<h2 id='get-title-credits'>Get title credits</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/people/[ID]/credits <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cast"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Role"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"also_known_as"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seo Yoo Jin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">242</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/242-cinderella-man"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cinderella Man"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"original_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"신데렐라 맨"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2009</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drama"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Korean"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Role"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"also_known_as"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jang Sae Byuk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">451</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/451-you-are-my-destiny"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You Are My Destiny"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"original_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"너는 내 운명"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drama"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Korean"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">crew</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get the TV show or movie credits for a person.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/people/[ID]/credits</code></p>
-<h1 id='reviews'>Reviews</h1><h2 id='get-a-review'>Get a review</h2>
+<h1 id='reviews'>Reviews</h1><h2 id='get-a-review'>Get a review</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.mydramalist.com/v1/reviews/[ID] <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40016</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ratings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"acting"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"music"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rewatch"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amazing drama!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"review"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nullam tincidunt adipiscing enim. Phasellus magna..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dropped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"spoiler"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lang_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voted"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"episodes_seen"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dummy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dummy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29385</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/29385-test-title-22341"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Content 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drama"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2015</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-08T01:36:33Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get a review details by ID.</p>
+
 <p><code>GET https://api.mydramalist.com/v1/reviews/[ID]</code></p>
-<h2 id='create-a-review'>Create a review</h2>
+<h2 id='create-a-review'>Create a review</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://api.mydramalist.com/v1/reviews'</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
+  --data <span class="s1">'{
+"completed": true,
+"dropped": false,
+"episodes_seen": 1,
+"headline": null,
+"parent_id": 24640,
+"lang_iso": "en-US",
+"ratings": {
+  "story": 9, 
+  "acting": 8.5, 
+  "music": 9, 
+  "rewatch": 8.5, 
+  "overall": 9.5
+},
+"review": "Donec id justo. Suspendisse eanim turpis, dictum sed, iaculis a, condimentum nec, nisi. Fusce fermentum odio nec arcu. Nullam sagittis. Cras dapibus.\n\nEtiam vitae tortor. Suspendisse feugiat. Phasellus dolor. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Fusce a quam.\n\nDonec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Nunc nulla. Vivamus elementum semper nisi. \n\nPellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque ut nisi.",
+"spoiler": false
+}'</span>
+</code></pre>
+<p>Post a review for a TV show or movie. The <code>parent_id</code> is field is required for the TV shows or movie.</p>
+<h3 id='review-object'>Review object</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>completed</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>episodes_seen</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>headline</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>parent_id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>lang_iso</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>ratings</td>
+<td>ratings object</td>
+<td></td>
+</tr>
+<tr>
+<td>review</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>spoiler</td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='ratings-object'>Ratings object</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>story</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>acting</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>music</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>rewatch</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>overall</td>
+<td>float</td>
+<td></td>
+</tr>
+</tbody></table>
+
 <p><code>POST https://api.mydramalist.com/v1/reviews</code></p>
-<h2 id='update-a-review'>Update a review</h2>
+<h2 id='update-a-review'>Update a review</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="se">\</span>
+  <span class="s1">'https://api.mydramalist.com/v1/reviews/[ID]'</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span> <span class="se">\</span>
+  --data <span class="s1">'{
+"completed": true,
+"dropped": false,
+"episodes_seen": 1,
+"headline": null,
+"id": 41568,
+"lang_iso": "es",
+"ratings": {
+  "story": 9, 
+  "acting": 8.5, 
+  "music": 9, 
+  "rewatch": 8.5, 
+  "overall": 9.5
+},
+"review": "Donec id justo. Suspendisse eanim turpis, dictum sed, iaculis a, condimentum nec, nisi. Fusce fermentum odio nec arcu. Nullam sagittis. Cras dapibus.\n\nEtiam vitae tortor. Suspendisse feugiat. Phasellus dolor. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Fusce a quam.\n\nDonec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Nunc nulla. Vivamus elementum semper nisi. \n\nPellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque ut nisi.",
+"spoiler": false
+}'</span>
+</code></pre>
+<p>Update a single review. The OAuth user must match the author of the review in order to update it.</p>
+
 <p><code>PATCH https://api.mydramalist.com/v1/reviews/[ID]</code></p>
-<h2 id='delete-a-review'>Delete a review</h2>
+<h2 id='delete-a-review'>Delete a review</h2><pre class="highlight shell tab-shell"><code>curl X DELETE <span class="se">\</span>
+  <span class="s1">'http://api.mydramalist.com/reviews/[ID]'</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer [access_token]'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'mdl-api-key: [client_id]'</span> 
+</code></pre>
+<p>Delete a single review. The OAuth user must match the author of the review in order to delete it. </p>
+
 <p><code>DELETE https://api.mydramalist.com/v1/reviews/[ID]</code></p>
 <h1 id='genres'>Genres</h1><h2 id='get-genres'>Get genres</h2>
 <p><code>GET https://api.mydramalist.com/v1/genres</code></p>
@@ -561,9 +1017,9 @@ You must replace <code>[client_id]</code> with your personal API key.
       </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Korea"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Korean"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwt.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwm.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.mydramalist.com/X8rjwc.jpg"</span><span class="w">
+        </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
